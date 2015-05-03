@@ -7,18 +7,16 @@ if (session_status() == PHP_SESSION_NONE)
     session_start();
 }
 
-$ime=$priimek=$geslo="";
+$user=$geslo="";
 $result="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
-	$postIme=$_POST["ime"];
-	$postPriimek=$_POST["priimek"];
+	$postUser=$_POST["username"];
 	$postGeslo=sha1($_POST["geslo"]);
 	
 	//TI PODATKI BODO PREBRAN IZ BAZE!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	$ime=$postIme;//
-	$priimek=$postPriimek;//
+	$user=$postUser;
 	$geslo=$postGeslo;//
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -26,14 +24,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	{
 		$result="NAPAČNO GESLO";
 	}
-	else if(strtoupper($ime)!=strtoupper($postIme))
+	else if(strtoupper($user)!=strtoupper($postUser))
 	{
 		$result="NAPAČNO IME";
 	}
-	else if(strtoupper($priimek)!=strtoupper($postPriimek))
-	{
-		$result="NAPAČEN PRIIMEK";
-	}
+	
 	else
 	{
 		$result="PRIJAVA USPEŠNA";
@@ -42,28 +37,23 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	
 if($ime!="" && $priimek!="")
 {
-	$_SESSION["ime"]=$ime;
-	$_SESSION["priimek"]=$priimek;
+	$_SESSION["username"]=$user;
 }
 else
 {
-	if(isset($_SESSION["ime"]))
+	if(isset($_SESSION["username"]))
 	{
-		unset($_SESSION["ime"]);
+		unset($_SESSION["username"]);
 	}
-	
-	if(isset($_SESSION["priimek"]))
-	{
-		unset($_SESSION["priimek"]);
-	}
+
 }
 
 	echo '<center><h1><b>'.$result.'</center> </h1> </b>';
 	
-	if(isset($ime) && $ime!="" && isset($priimek) && $priimek!="")
+	if(isset($user) && $ime!="")
 	{
 		echo '<script type="text/javascript">
-		parent.checkLogin('.json_encode($ime).','.json_encode($priimek).');
+		parent.checkLogin(json_encode($ime));
 		</script>';
 	}
 ?>
@@ -77,8 +67,7 @@ else
 <body>
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <div align="center" style="margin-top:10%">
-<b> Ime: </b> <br> <input type="text" name="ime" required> <br>
-<b> Priimek: </b> <br> <input type="text" name="priimek" required> <br>
+<b> Uporabniško ime: </b> <br> <input type="text" name="username" required> <br>
 <b> Geslo: </b> <br> <input type="password" name="geslo" maxlength="20" minlength="6" required> <br>
 <br> <input type="submit" value="Vpis">
 </div>

@@ -69,14 +69,14 @@ li
 	var loggedIn;
 	document.onload=checkLogin("","");
 	
-	function checkLogin(ime,priimek)
+	function checkLogin(ime)
 	{
 		//var ime = <?php   $ime=false; if(isset($_SESSION["ime"]) && $_SESSION["ime"]!="") $ime=$_SESSION["ime"]; echo (json_encode($ime)); ?>;
 		//var priimek = <?php  $priimek=false; if(isset($_SESSION["priimek"]) && $_SESSION["priimek"]!="") $priimek=$_SESSION["priimek"]; echo (json_encode($priimek)); ?>;
-		if( ime != false && priimek != false )
+		if( ime != false )
 		{
 			document.getElementById('frame').src='vnos.html';
-			document.getElementById('prijava').innerHTML="Prijavljen/-a kot "+ime+" "+priimek;
+			document.getElementById('prijava').innerHTML="Prijavljen/-a kot "+ime;
 			document.getElementById('registracija').innerHTML="ODJAVA";
 			loggedIn=true;
 		}
