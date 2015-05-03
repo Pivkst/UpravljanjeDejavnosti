@@ -14,6 +14,30 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 {
 	$postUser=$_POST["username"];
 	$postGeslo=sha1($_POST["geslo"]);
+
+
+
+	$conn = mysqli_connect('localhost', 'root', '', 'dejavnosti');
+
+	if (!$conn) {
+		$outputString="Connection failed: " . mysqli_connect_error();
+	}
+	
+	else {
+		$result = $conn -> query("SELECT userGeslo FROM user WHERE username = '$postUser'");
+		$result = $result -> fetch_all(MYSQLI_ASSOC);
+		print_r($result);
+	}
+
+
+
+
+
+
+
+
+
+
 	
 	//TI PODATKI BODO PREBRAN IZ BAZE!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	$user=$postUser;
