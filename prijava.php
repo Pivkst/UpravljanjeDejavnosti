@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	}
 }
 	
-if($ime!="" && $priimek!="")
+if($user!="")
 {
 	$_SESSION["username"]=$user;
 }
@@ -53,7 +53,7 @@ else
 	if(isset($user) && $ime!="")
 	{
 		echo '<script type="text/javascript">
-		parent.checkLogin(json_encode($ime));
+		parent.checkLogin('.json_encode($ime).');
 		</script>';
 	}
 ?>
