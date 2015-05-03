@@ -9,6 +9,7 @@
 
 <form method="POST" action="dodajUporabnika.php">
 <div align="center" style="margin-top:10%">
+<b>Username: </b> <br> <input type="text" name="username" required><br>
 <b>Ime: </b> <br> <input type="text" name="ime" required><br>
 <b>Priimek: </b> <br> <input type="text" name="priimek" required><br>
 <b>E-Pošta: </b> <br> <input type="email" name="email" required><br>
