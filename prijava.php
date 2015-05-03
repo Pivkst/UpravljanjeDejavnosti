@@ -24,11 +24,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	else {
 		$result = $conn -> query("SELECT userGeslo, userStatus FROM user WHERE username = '$postUser'");
 		$result = $result -> fetch_all(MYSQLI_ASSOC);
-		print_r($result);
+		$geslo=$result[0]['userGeslo'];
 	}
+
 
 	$geslo=$result[0]['userGeslo'];
 	$status=$result[0]['userStatus'];
+
 
 	if($postGeslo!=$geslo)
 	{
