@@ -28,21 +28,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$result = $result -> fetch_all(MYSQLI_ASSOC);
 		print_r($result);
 	}
-
-
-
-
-
-
-
-
-
-
 	
-	//TI PODATKI BODO PREBRAN IZ BAZE!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	$user=$postUser;
-	$geslo=$postGeslo;//
-	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	$geslo=$result[0]['userGeslo'];
 
 	if($postGeslo!=$geslo)
 	{
