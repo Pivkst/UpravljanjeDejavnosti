@@ -61,7 +61,7 @@ if($outputString=="")
 	else {
 
 		$sql = "INSERT INTO user(username, userIme, userPriimek, userGeslo, userStatus, userMail)
-		VALUES ($username, $ime, $priimek, $geslo, 0, $email)";
+		VALUES ('$username', '$ime', '$priimek', '$geslo', '0', '$email')";
 
 		if (mysqli_query($conn, $sql)) {
 			$outputString = "Dogodek uspešno dodan!";
