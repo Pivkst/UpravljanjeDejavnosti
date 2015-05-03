@@ -9,12 +9,15 @@
 		$result['mentorIme']=array();
 		$result['mentorPriimek']=array();
 		$stringStart=0;
+		
+		$imena=array();
+		$priimki=array();
 
 		for($i=0; $i<strlen($_POST['mentorIme']); $i++)
 		{
 			if($_POST['mentorIme'][$i]==',')
 			{
-				$result['mentorIme'][]=substr($_POST['mentorIme'],$stringStart,$i-$stringStart);
+				$priimki[]=substr($_POST['mentorIme'],$stringStart,$i-$stringStart);
 				$stringStart=$i+1;
 			}
 		}
@@ -24,9 +27,15 @@
 		{
 			if($_POST['mentorPriimek'][$i]==',')
 			{
-				$result['mentorPriimek'][]=substr($_POST['mentorPriimek'],$stringStart,$i-$stringStart);
+				$imena[]=substr($_POST['mentorPriimek'],$stringStart,$i-$stringStart);
 				$stringStart=$i+1;
 			}
+		}
+		
+		$size=count($imena);
+		foreach( $i=0 ; $i<$size ; $i++)
+		{
+			$result['mentorji'][]=$imena[$i].' '.$priimki[$i];
 		}
 		
 		if(strcmp($_POST['nacinSrecanja'],"poDogovoru")==0)

@@ -82,7 +82,6 @@ li
 		//var priimek = <?php  $priimek=false; if(isset($_SESSION["priimek"]) && $_SESSION["priimek"]!="") $priimek=$_SESSION["priimek"]; echo (json_encode($priimek)); ?>;
 		if( ime != false )
 		{
-			alert("jej burek!");
 			document.getElementById('frame').src='vnos.html';
 			document.getElementById('prijava').innerHTML="Prijavljen/-a kot "+ime;
 			document.getElementById('registracija').innerHTML="ODJAVA";
