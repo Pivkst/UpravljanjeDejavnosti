@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE)
     session_start();
 }
 
-$user=$geslo="";
+$user=$geslo=$status="";
 $result="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
@@ -25,16 +25,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$result = $conn -> query("SELECT userGeslo, userStatus FROM user WHERE username = '$postUser'");
 		$result = $result -> fetch_all(MYSQLI_ASSOC);
 		$geslo=$result[0]['userGeslo'];
+		$status=$result[0]['userStatus'];
 	}
-
-
-	$geslo=$result[0]['userGeslo'];
-	$status=$result[0]['userStatus'];
-
-
+	
 	if($postGeslo!=$geslo)
 	{
-		$result="NAPAČNO GESLO";
+		$result="NAPAČNO UPORABNIŠKO IME/GESLO";
 	}
 	else
 	{
@@ -59,10 +55,10 @@ else
 
 	echo '<center><h1><b>'.$result.'</center> </h1> </b>';
 	
-	if(isset($user) && $user!="")
+	if(isset($user) && $user!="" && $status!="")
 	{
 		echo '<script type="text/javascript">
-		parent.checkLogin('.json_encode($user).');
+		parent.checkLogin('.json_encode($user).','.json_encode($status).');
 		</script>';
 	}
 ?>

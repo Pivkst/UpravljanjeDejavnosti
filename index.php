@@ -20,8 +20,6 @@ ul
 li:hover
 {
 	background-color: #00ffff;
-	transition-duration: 10s;
-	transform: rotate(10080deg);
 }
 
 iframe:hover
@@ -67,25 +65,30 @@ li
 <body style="background-color:#ff00ff;" >
 <div>
 
-<iframe src="prijava.php" style="background-color:#00ff00; width:100%; height:1500px;" seamless id="frame"> </iframe>
+<iframe src="prijava.php" style="background-color:#00ff00; width:100%; height:1500px;"  seamless id="frame"> </iframe>
 
 </div>
 
 <script type="text/javascript">
 
-	var loggedIn;
-	document.onload=checkLogin("");
+	var loggedIn=-1;
+	checkLogin('test',0);
 	
-	function checkLogin(ime)
-	{
-		//var ime = <?php   $ime=false; if(isset($_SESSION["ime"]) && $_SESSION["ime"]!="") $ime=$_SESSION["ime"]; echo (json_encode($ime)); ?>;
-		//var priimek = <?php  $priimek=false; if(isset($_SESSION["priimek"]) && $_SESSION["priimek"]!="") $priimek=$_SESSION["priimek"]; echo (json_encode($priimek)); ?>;
-		if( ime != false )
+	function checkLogin(ime, status)
+	{					
+		if( ime != false && ime!="")
 		{
-			document.getElementById('frame').src='vnos.html';
+			if(status==0)
+			{
+				document.getElementById('frame').src='pogled.php';
+			}
+			else
+			{
+				document.getElementById('frame').src='vnos.html';
+			}
 			document.getElementById('prijava').innerHTML="Prijavljen/-a kot "+ime;
 			document.getElementById('registracija').innerHTML="ODJAVA";
-			loggedIn=true;
+			loggedIn=status;
 		}
 		else
 		{
@@ -95,7 +98,7 @@ li
 	
 	function odjava()
 	{
-		loggedIn=false;
+		loggedIn=-1;
 		document.getElementById('frame').src='prijava.php';
 		document.getElementById('prijava').innerHTML="PRIJAVA";
 		document.getElementById('registracija').innerHTML="REGISTRACIJA";
@@ -121,9 +124,13 @@ li
 	
 	function openVnos()
 	{
-		if(loggedIn)
+		if(loggedIn>=1)//1 = status mentorja??
 		{
 			document.getElementById('frame').src='vnos.html';
+		}
+		else if(loggedIn==0)
+		{
+			alert("Za dodajanje dogodkov moraš biti mentor ali administrator!");
 		}
 		else
 		{
@@ -133,26 +140,23 @@ li
 	
 	function openPogled()
 	{
-		if(loggedIn)
+		if(loggedIn==-1)
 		{
-			document.getElementById('frame').src='pogled.php';
+			alert("Za pregled dogodkov se moraš prijaviti!");
 		} 
 		else
 		{
-			alert("Za pregled dogodkov se moraš prijaviti!");
+			document.getElementById('frame').src='pogled.php';
 		}
+
 	}
 	
 	function openPrijava()
 	{
-		if(loggedIn)
-		{
-			document.getElementById('frame').src='vnos.html';
-		} 
-		else
+		if(loggedIn==-1)
 		{
 			document.getElementById('frame').src='prijava.php';
-		}
+		} 
 	}
 
 </script>
