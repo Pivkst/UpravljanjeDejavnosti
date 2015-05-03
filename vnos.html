@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="UTF-8"> 
+<title> Dejavnost </title>
+<h1><b> VNESI DEJAVNOST </b></h1> 
+
+<style>
+
+fieldset
+{
+	background-color: #f0f0f0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<form action="vnosVBazo.php" method="POST" id="vnos" onchange="disableSelect()">
+<b>Naslov dejavnosti: </b>
+<input type="text" name="naslovDejavnosti" required>
+<br>
+<fieldset>
+<legend><b style="font-size:20px">Mentorji</b></legend>
+<b>Ime: </b> <input type="text" name="mentorIme"> <br>
+<b>Priimek: </b> <input type="text" name="mentorPriimek"><br>
+<button type="button" onclick="dodajMentorja()" > Dodaj </button>
+<button type="button" onclick="odstraniMentorja()" > Odstrani </button>
+<br> <p id="mentorji"> </p>
+</fieldset>
+<br>
+<fieldset>
+<legend><b style="font-size:20px">Predvideno število srečanj</b></legend>
+<input type="radio" name="nacinSrecanja" value="enkratnaDejavnost" ><b> Strnjena Enkratna Dejavnost</b>
+<select name="casSrecanja" required disabled>
+    <option disabled selected value=""> izberi ponavljanje </option>
+	<option value="veckratTedensko"> VEČKRAT TEDENSKO </option>
+	<option value="tedensko"> TEDENSKO </option>
+	<option value="dvakratMesecno"> DVAKRAT MESEČNO </option>
+	<option value="mesecno"> MESEČNO </option>
+	<option value="nekajkratLetno"> NEKAJKRAT LETNO </option>
+</select>
+<br>
+
+<input type="radio" name="nacinSrecanja" value="poDogovoru" checked><b> Po dogovoru </b><br>
+<b> Drugo: </b><input type="text" name="srecanjaDrugo">
+</fieldset>
+
+<fieldset>
+<legend> <b style="font-size:20px">Kontakt za vpis</b></legend>
+
+<b> Govorilne ure: </b><input type="text" name="govorilneUre" required> <br>
+<b> E-Pošta: </b> <input type="email" name="ePosta" required> <br>
+<b> Telefon: </b> <input type="tel" name="telefon" required> <br>
+<b> Drugo: </b> <input type="text" name="vpisDrugo"> <br>
+
+</fieldset>
+
+<fieldset style="background-color:#f0f0f0">
+<legend> <b style="font-size:20px">Organizacijska oblika</b></legend>
+
+<input type="checkbox" name="oblike[]" value="krozek"> <b> Krožek </b> <br>
+<input type="checkbox" name="oblike[]" value="pripraveNaTekmovanje"> <b> Priprave na tekmovanje </b> 
+<select name="pripraveNaTekmovanjeSelect"  required disabled>
+    <option disabled selected value=""> izberi stevilo </option>
+	<option value="posameznik"> POSAMEZNIK </option>
+	<option value="par"> PAR </option>
+	<option value="ekipa"> EKIPA </option>
+</select>
+<br>
+<input type="checkbox" name="oblike[]" value="projektnoDelo"> <b> Projektno delo </b>
+<select name="projektnoDeloSelect" required disabled>
+    <option disabled selected value=""> izberi stevilo </option>
+	<option value="posameznik"> POSAMEZNIK </option>
+	<option value="par"> PAR </option>
+	<option value="ekipa"> EKIPA </option>
+</select>
+<br>
+<input type="checkbox" name="oblike[]" value="ekskurzija"> <b> Ekskurzija </b> <br>
+<input type="checkbox" name="oblike[]" value="eUcenje"> <b> E-Učenje </b> <br>
+<input type="checkbox" name="oblike[]" value="mentorstvoPriPouku"> <b> Mentorstvo pri pouku </b> <br>
+<b> Drugo: </b> <input type="text" name="oblikeDrugo"> <br>
+
+</fieldset>
+
+
+<fieldset style="background-color:#f0f0f0">
+<legend> <b style="font-size:20px">Dejavnost primerna za</b></legend>
+<input type="checkbox" name="primernost[]" value="dijakeVsehProgramov"> <b> Dijake vseh programov </b> <br>
+<input type="checkbox" name="primernost[]" value="dijakeVsehLetnikov"> <b> Dijake vseh letnikov </b> <br>
+
+<input type="checkbox" name="program[]" value="elektroteniških" > <b> Program elektrotehnik </b>
+<input type="checkbox" name="program[]" value="računalniških" > <b> Program računalniški tehnik </b>
+<input type="checkbox" name="program[]" value="gimnazijskih"> <b> Program tehnične gimnazije </b>
+<br>
+<input type="checkbox" name="letnik[]" value="prvih" > <b> 1. Letnik </b>
+<input type="checkbox" name="letnik[]" value="drugih" > <b> 2. Letnik </b>
+<input type="checkbox" name="letnik[]" value="tretjih"> <b> 3. Letnik </b>
+<input type="checkbox" name="letnik[]" value="četrtih"> <b> 4. Letnik </b>
+<br>
+
+<b> Drugo: </b> <input type="text" name="primernostDrugo"> <br>
+
+</fieldset>
+
+<fieldset style="background-color:#f0f0f0">
+<legend> <b style="font-size:20px">Dejavnost spodbuja/omogoča razvoj nadarjenosti na področjih</b></legend>
+
+<input type="checkbox" name="razvoj[]" value="racunalnistvo"> <b> Računalništvo </b> <br>
+<input type="checkbox" name="razvoj[]" value="elektrotehnika"> <b> Elektrotehnika </b> <br>
+<input type="checkbox" name="razvoj[]" value="splosnoIntelektualno"> <b> Splošno-intelektualno </b> <br>
+<input type="checkbox" name="razvoj[]" value="ucno"> <b> Učno </b> <br>
+<input type="checkbox" name="razvoj[]" value="ustvarjalnost"> <b> Ustvarjalnost </b> <br>
+<input type="checkbox" name="razvoj[]" value="voditeljsko"> <b> Voditeljsko </b> <br>
+<input type="checkbox" name="razvoj[]" value="glasbeno"> <b> Glasbeno </b> <br>
+<input type="checkbox" name="razvoj[]" value="literarno"> <b> Literarno </b> <br>
+<input type="checkbox" name="razvoj[]" value="likovno"> <b> Likovno </b> <br>
+<input type="checkbox" name="razvoj[]" value="dramsko"> <b> Dramsko </b> <br>
+<input type="checkbox" name="razvoj[]" value="filmsko"> <b> Filmsko </b> <br>
+<input type="checkbox" name="razvoj[]" value="telesnoGibalno"> <b> Telesno-gibalno </b> <br>
+<input type="checkbox" name="razvoj[]" value="tehnično"> <b> Tehnično </b> <br>
+
+</fieldset>
+
+<fieldset style="background-color:#f0f0f0">
+<legend> <b style="font-size:20px">Pomembnejša vsebina in opombe</b></legend>
+<textarea name="pomembneOpombe" cols="1" rows="10> 
+<input type="text" name="pomembneOpombe" style="width:100%; height:250px">
+</textarea>
+</fieldset>
+
+
+<br>
+<input type="submit" value="Vnesi" onclick="dodajVFormo()" style="width:500px"> 
+</form>
+
+<script type="text/javascript">
+	var output="";
+	var imeForm="";
+	var priimekForm="";
+	var counter=1;
+
+	function dodajMentorja()
+	{
+		var ime = document.getElementsByName("mentorIme")[0].value;
+		var priimek = document.getElementsByName("mentorPriimek")[0].value;
+		if(!ime.trim())
+		{
+			window.alert("Prazen vnos imena!");
+			return;
+		}
+		if(!priimek.trim())
+		{
+			window.alert("Prazen vnos priimka!");
+			return;
+		}
+		
+		output += '<i>'+counter+'. '+ime+' '+priimek+'</i><br>';
+		imeForm += ime+',';
+		priimekForm += priimek+',';
+		document.getElementById("mentorji").innerHTML = '<fieldset style="background-color:00ff00">'+output+'</fieldset>';
+		counter++;
+		document.getElementsByName("mentorIme")[0].value='';
+		document.getElementsByName("mentorPriimek")[0].value='';
+	}
+	
+	function odstraniMentorja ()
+	{
+		document.getElementById("mentorji").innerHTML = "";
+		imeForm="";
+		priimekForm="";
+		output="";
+		counter=1;
+		document.getElementsByName("mentorIme")[0].value='';
+		document.getElementsByName("mentorPriimek")[0].value='';
+	}
+	
+	function disableSelect()
+	{
+		if(document.getElementsByName('nacinSrecanja')[0].checked)
+		{
+			document.getElementsByName('casSrecanja')[0].disabled=false;
+			
+		}
+		else
+		{
+			document.getElementsByName('casSrecanja')[0].disabled=true;
+		}
+		
+	
+		
+		if(document.getElementsByName('primernost[]')[0].checked)
+		{
+			var x=document.getElementsByName('program[]');
+			for(var i=0 ; i<x.length ; i++)
+			{
+				x[i].disabled=true;
+				//x[i].checked=true;
+			}
+		}
+		else
+		{
+			var x=document.getElementsByName('program[]');
+			for(var i=0 ; i<x.length ; i++)
+			{
+				x[i].disabled=false;
+				//x[i].checked=false;
+			}	
+		}
+		
+		
+		if(document.getElementsByName('primernost[]')[1].checked)
+		{
+			var x=document.getElementsByName('letnik[]');
+			for(var i=0 ; i<x.length ; i++)
+			{
+				x[i].disabled=true;
+				//x[i].checked=true;
+			}
+		}
+		else
+		{
+			var x=document.getElementsByName('letnik[]');
+			for(var i=0 ; i<x.length ; i++)
+			{
+				x[i].disabled=false;
+				//x[i].checked=false;
+			}	
+		}
+		
+		if(document.getElementsByName('oblike[]')[1].checked)
+		{
+			document.getElementsByName('pripraveNaTekmovanjeSelect')[0].disabled=false;
+		}
+		else
+		{
+			document.getElementsByName('pripraveNaTekmovanjeSelect')[0].disabled=true;
+		}
+		
+		
+		if(document.getElementsByName('oblike[]')[2].checked)
+		{
+			document.getElementsByName('projektnoDeloSelect')[0].disabled=false;
+		}
+		else
+		{
+			document.getElementsByName('projektnoDeloSelect')[0].disabled=true;
+		}
+		
+	}
+	
+	function dodajVFormo()
+	{
+		document.getElementsByName("mentorIme")[0].value=imeForm;
+		document.getElementsByName("mentorPriimek")[0].value=priimekForm;
+	}
+</script>
+
+
+</body>
+
+</html>;
