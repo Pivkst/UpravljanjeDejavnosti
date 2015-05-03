@@ -67,7 +67,7 @@ li
 <script type="text/javascript">
 
 	var loggedIn;
-	document.onload=checkLogin("","");
+	document.onload=checkLogin("");
 	
 	function checkLogin(ime)
 	{
