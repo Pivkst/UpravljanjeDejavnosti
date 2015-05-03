@@ -73,7 +73,6 @@ if($outputString=="")
 		mysqli_close($conn);
 	}
 	
-	return $returnString;
 
 
 	echo $username.'<br>';
