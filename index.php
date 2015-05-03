@@ -27,7 +27,6 @@ li:hover
 iframe:hover
 {
 	transition-duration: 10s;
-	transform: rotate(1500deg);
 }
 
 li 

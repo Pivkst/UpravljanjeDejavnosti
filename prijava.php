@@ -15,8 +15,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	$postUser=$_POST["username"];
 	$postGeslo=sha1($_POST["geslo"]);
 
-
-
 	$conn = mysqli_connect('localhost', 'root', '', 'dejavnosti');
 
 	if (!$conn) {
@@ -28,21 +26,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		$result = $result -> fetch_all(MYSQLI_ASSOC);
 		print_r($result);
 	}
-	
-	$user=$postUser;
+
 	$geslo=$result[0]['userGeslo'];
 
 	if($postGeslo!=$geslo)
 	{
 		$result="NAPAČNO GESLO";
 	}
-	else if(strtoupper($user)!=strtoupper($postUser))
-	{
-		$result="NAPAČNO IME";
-	}
-	
 	else
 	{
+		$user=$postUser;
 		$result="PRIJAVA USPEŠNA";
 	}
 }
