@@ -9,7 +9,7 @@ if(isset($_POST["username"]))
 }
 else
 {
-	$outputString="Uporabniško ime ni bilo vnešeno :error 3454364364363464";
+	$outputString="Uporabniško ime ni bilo vnešeno :error 945389043809380989";
 }
 
 if(isset($_POST["ime"]))
