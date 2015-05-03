@@ -52,10 +52,11 @@ if($outputString=="")
 {
 	
 	$geslo=sha1($geslo);
+	$returnString="";
 	$conn = mysqli_connect('localhost', 'root', '', 'dejavnosti');
 
 	if (!$conn) {
-		$outputString="Connection failed: " . mysqli_connect_error();
+		$returnString="Connection failed: " . mysqli_connect_error();
 	}
 	
 	else {
@@ -64,14 +65,17 @@ if($outputString=="")
 		VALUES ($username, $ime, $priimek, $geslo, 0, $email)";
 
 		if (mysqli_query($conn, $sql)) {
-			$outputString = "Dogodek uspešno dodan!";
+			$returnString = "Dogodek uspešno dodan!";
 		} else {
-			$outputString = "Error: " . $sql . "<br>" . mysqli_error($conn);
+			$returnString = "Error: " . $sql . "<br>" . mysqli_error($conn);
 		}
 
 		mysqli_close($conn);
 	}
 	
+	return $returnString;
+
+
 	echo $username.'<br>';
 	echo $ime.'<br>';
 	echo $priimek.'<br>';
