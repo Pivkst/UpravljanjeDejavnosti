@@ -50,7 +50,7 @@ else
 
 	echo '<center><h1><b>'.$result.'</center> </h1> </b>';
 	
-	if(isset($user) && $ime!="")
+	if(isset($user) && $user!="")
 	{
 		echo '<script type="text/javascript">
 		parent.checkLogin('.json_encode($ime).');
