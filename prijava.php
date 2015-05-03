@@ -53,7 +53,7 @@ else
 	if(isset($user) && $user!="")
 	{
 		echo '<script type="text/javascript">
-		parent.checkLogin('.json_encode($ime).');
+		parent.checkLogin('.json_encode($user).');
 		</script>';
 	}
 ?>
