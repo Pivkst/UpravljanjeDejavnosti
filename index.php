@@ -1,4 +1,4 @@
-<?php
+﻿<?php
    session_start();
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ ul
 
 li:hover
 {
-	background-color: #00ffff;
+	background-color: #ffff00;
 }
 
 iframe:hover
@@ -31,7 +31,7 @@ li
 {
     float: left;
 	padding: 10px;
-	background-color: #ffff00;
+	background-color: #ffffd0;
 }
 
 
@@ -62,10 +62,10 @@ li
 
 </head>
 
-<body style="background-color:#ff00ff;" >
+<body style="background-color:#d0e0ff;" >
 <div>
 
-<iframe src="prijava.php" style="background-color:#00ff00; width:100%; height:1500px;"  seamless id="frame"> </iframe>
+<iframe src="prijava.php" style="background-color:#e0f0ff; width:100%; height:1500px;"  seamless id="frame"> </iframe>
 
 </div>
 
